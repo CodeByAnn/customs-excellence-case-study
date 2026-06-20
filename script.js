@@ -252,8 +252,8 @@ function drawDocumentFlow(svg, width, height) {
     const compact = width < 520;
     const centerX = compact ? width * 0.34 : width * 0.34;
     const labelX = compact ? centerX + 82 : centerX + 138;
-    const top = compact ? 54 : 46;
-    const bottom = height - (compact ? 54 : 46);
+    const top = compact ? 42 : 46;
+    const bottom = height - (compact ? 86 : 46);
     const step = (bottom - top) / (flowNodes.length - 1);
 
     flowNodes.forEach((d, i) => {
@@ -339,8 +339,8 @@ function drawControlLogic(svg, width, height) {
     const baseCards = logicColumns.map((col, i) => ({ ...col, color: colors[i] }));
     const cardW = width - (compact ? 34 : 64);
     const gap = compact ? 18 : 24;
-    const cardH = Math.max(compact ? 134 : 150, Math.min(compact ? 156 : 174, (height - 76 - gap * 2) / 3));
-    const startY = Math.max(20, (height - (cardH * 3 + gap * 2)) / 2);
+    const cardH = Math.max(compact ? 104 : 150, Math.min(compact ? 124 : 174, (height - 42 - gap * 2) / 3));
+    const startY = Math.max(compact ? 10 : 20, (height - (cardH * 3 + gap * 2)) / 2);
     const layouts = baseCards.map((_, i) => ({
         x: (width - cardW) / 2,
         y: startY + i * (cardH + gap),
@@ -407,13 +407,17 @@ function drawControlLogic(svg, width, height) {
         const title = group
             .append("text")
             .attr("x", card.w / 2)
-            .attr("y", compact ? 38 : 44)
+            .attr("y", compact ? 28 : 44)
             .attr("text-anchor", "middle")
             .attr("fill", palette.ink)
-            .attr("font-size", card.title.length > 20 ? (compact ? 15 : 20) : (compact ? 18 : 25))
+            .attr("font-size", card.title.length > 20 ? (compact ? 13 : 20) : (compact ? 16 : 25))
             .attr("font-weight", 950)
             .attr("letter-spacing", "-0.055em");
-        typeSvgText(title, card.title, 720 + card.order * 420, 24);
+        if (compact) {
+            title.text(card.title);
+        } else {
+            typeSvgText(title, card.title, 720 + card.order * 420, 24);
+        }
 
         const itemPositions = getLogicItemPositions(card.items, card.w, compact);
         group.selectAll("text.logic-item")
@@ -453,8 +457,8 @@ function drawControlLogic(svg, width, height) {
     }
 
     function getLogicItemPositions(items, cardWidth, isCompact) {
-        const startY = isCompact ? 74 : 86;
-        const rowGap = isCompact ? 24 : 30;
+        const startY = isCompact ? 58 : 86;
+        const rowGap = isCompact ? 21 : 30;
         if (items.length === 4) {
             return [
                 { x: cardWidth * 0.28, y: startY },
@@ -486,12 +490,12 @@ function typeSvgText(textSelection, phrase, delay = 0, speed = 24) {
 function drawRiskScore(svg, width, height) {
     const compact = width < 700;
     const narrow = width < 520;
-    const centerX = compact && !narrow ? width * 0.5 : width * 0.52;
-    const centerY = compact ? height * 0.4 : height * 0.43;
+    const centerX = compact ? width * 0.5 : width * 0.52;
+    const centerY = narrow ? height * 0.28 : compact ? height * 0.4 : height * 0.43;
     const riskColors = [palette.blue, palette.mint, palette.clay, palette.rose, palette.lime];
-    const coreR = compact ? 82 : 126;
-    const chipW = compact ? 148 : 176;
-    const chipH = compact ? 32 : 34;
+    const coreR = narrow ? 72 : compact ? 82 : 126;
+    const chipW = narrow ? Math.min(154, width * 0.43) : compact ? 148 : 176;
+    const chipH = narrow ? 30 : compact ? 32 : 34;
     const margin = compact ? 12 : 20;
     const ringR = coreR * 1.32;
 
@@ -518,7 +522,7 @@ function drawRiskScore(svg, width, height) {
             .attr("x", centerX)
             .attr("y", centerY + (index - 1) * (compact ? 27 : 38) + (compact ? 8 : 12))
             .attr("text-anchor", "middle")
-            .attr("font-size", compact ? 25 : 36)
+            .attr("font-size", narrow ? 21 : compact ? 25 : 36)
             .attr("font-weight", 950)
             .attr("letter-spacing", "-0.06em")
             .text(line);
@@ -526,18 +530,32 @@ function drawRiskScore(svg, width, height) {
 
     const factorGroup = svg.append("g");
     const ringOverlap = compact ? 8 : 10;
-    const sideY = ringR * 0.56;
-    const coreEdgeX = Math.sqrt((coreR * coreR) - (sideY * sideY));
-    const chipGap = compact ? (narrow ? 12 : 22) : 30;
-    const sideX = coreEdgeX + chipGap + chipW / 2;
-    const topY = ringR - ringOverlap + chipH / 2;
-    const chipPositions = [
-        { x: centerX, y: centerY - topY },
-        { x: centerX + sideX, y: centerY - sideY },
-        { x: centerX + sideX, y: centerY + sideY },
-        { x: centerX - sideX, y: centerY + sideY },
-        { x: centerX - sideX, y: centerY - sideY }
-    ];
+    const chipPositions = narrow ? (() => {
+        const leftX = width * 0.28;
+        const rightX = width * 0.72;
+        const topY = centerY + coreR + 38;
+        const bottomY = topY + 42;
+        return [
+            { x: centerX, y: centerY - coreR - 26 },
+            { x: rightX, y: topY },
+            { x: rightX, y: bottomY },
+            { x: leftX, y: bottomY },
+            { x: leftX, y: topY }
+        ];
+    })() : (() => {
+        const sideY = ringR * 0.56;
+        const coreEdgeX = Math.sqrt((coreR * coreR) - (sideY * sideY));
+        const chipGap = compact ? 22 : 30;
+        const sideX = coreEdgeX + chipGap + chipW / 2;
+        const topY = ringR - ringOverlap + chipH / 2;
+        return [
+            { x: centerX, y: centerY - topY },
+            { x: centerX + sideX, y: centerY - sideY },
+            { x: centerX + sideX, y: centerY + sideY },
+            { x: centerX - sideX, y: centerY + sideY },
+            { x: centerX - sideX, y: centerY - sideY }
+        ];
+    })();
     riskParts.forEach((part, i) => {
         const pos = chipPositions[i];
         const x = clamp(pos.x, margin + chipW / 2, width - margin - chipW / 2);
@@ -570,7 +588,7 @@ function drawRiskScore(svg, width, height) {
         chip.append("text")
             .attr("x", 32)
             .attr("y", chipH / 2 + 4)
-            .attr("font-size", compact ? 9.6 : 10.8)
+            .attr("font-size", narrow ? 8.4 : compact ? 9.6 : 10.8)
             .attr("font-weight", 900)
             .attr("fill", palette.ink)
             .text(part);

@@ -511,28 +511,40 @@ svg {
 
 @media (max-width: 1100px) {
     .hero,
-    .scrolly,
     .stage-grid {
         grid-template-columns: 1fr;
     }
 
+    .scrolly {
+        display: block;
+        width: min(100% - 32px, 820px);
+    }
+
     .sticky-stage {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        height: 100svh;
+        min-height: 720px;
         grid-row: auto;
-        position: relative;
-        top: auto;
-        height: auto;
-        min-height: 820px;
+    }
+
+    .stage-grid {
+        height: 100%;
+        grid-template-rows: auto minmax(0, 1fr);
     }
 
     .stage-copy {
         border-right: 0;
         border-bottom: 1px solid var(--line);
+        align-content: start;
     }
 
     .step {
         grid-column: auto;
-        min-height: auto;
+        min-height: 78svh;
         opacity: 1;
+        margin-left: 0;
     }
 
     .view-grid {
@@ -587,7 +599,7 @@ svg {
 
     .hero {
         min-height: auto;
-        padding-top: 18px;
+        padding-top: max(18px, env(safe-area-inset-top));
     }
 
     .brand-mark {
@@ -629,25 +641,101 @@ svg {
     }
 
     .sticky-stage {
-        min-height: auto;
+        height: 100svh;
+        min-height: 100svh;
+        top: 0;
+        border-width: 1.5px;
+        background:
+            linear-gradient(rgba(12, 12, 12, 0.018) 1px, transparent 1px),
+            #ffffff;
+        background-size: 100% 44px, auto;
     }
 
     .stage-topline {
-        display: grid;
-        padding: 16px;
+        display: flex;
+        padding: 12px 14px;
+        font-size: 0.62rem;
+        letter-spacing: 0.15em;
     }
 
-    .stage-copy,
+    .stage-grid {
+        height: calc(100svh - 46px);
+        grid-template-rows: minmax(158px, 0.34fr) minmax(330px, 0.66fr);
+    }
+
+    .stage-copy {
+        gap: 10px;
+        padding: 16px 16px 12px;
+        overflow: hidden;
+    }
+
+    .stage-copy h2 {
+        font-size: clamp(1.55rem, 8.3vw, 2.32rem);
+        line-height: 0.94;
+        letter-spacing: -0.072em;
+    }
+
+    .stage-copy p {
+        max-width: none;
+        font-size: clamp(0.78rem, 3.35vw, 0.94rem);
+        line-height: 1.24;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
     .scene-visual {
-        padding: 18px;
+        min-height: 0;
+        padding: 4px 10px 12px;
     }
 
     .scene-stat {
-        min-height: auto;
+        display: none;
     }
 
     .step {
-        padding: 28px 0;
+        min-height: 92svh;
+        padding: 0;
+        align-content: center;
+        background: transparent;
+        border-top: 0;
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    .step > * {
+        visibility: hidden;
+    }
+
+    .step h3 {
+        margin-top: 14px;
+        font-size: clamp(2rem, 10vw, 2.9rem);
+        line-height: 0.9;
+    }
+
+    .step p {
+        margin-top: 28px;
+        font-size: clamp(1rem, 4.8vw, 1.2rem);
+        line-height: 1.42;
+    }
+
+    .step ul {
+        gap: 12px;
+        margin-top: 32px;
+    }
+
+    .step li {
+        grid-template-columns: 14px minmax(0, 1fr);
+        gap: 12px;
+        font-size: clamp(0.92rem, 4.1vw, 1.06rem);
+        line-height: 1.22;
+    }
+
+    .step li::before {
+        width: 12px;
+        height: 12px;
+        border-width: 2px;
     }
 
     .view-grid {
