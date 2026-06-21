@@ -9,7 +9,7 @@ const scenes = {
     logic: {
         kicker: "02 / Control logic",
         title: "Track data quality, compliance risk and business impact.",
-        body: "The dashboard should separate what is missing, what is risky, and what creates delay, cost, or audit issues, helping the team stay technically accurate and organizationally effective.",
+        body: "The goal is to highlight the issues that affect control, risk and business impact.",
         stat: "3",
         statLabel: "control layers"
     },
