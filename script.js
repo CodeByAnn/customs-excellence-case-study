@@ -9,7 +9,7 @@ const scenes = {
     logic: {
         kicker: "02 / Control logic",
         title: "Track data quality, compliance risk and business impact.",
-        body: "The dashboard should separate what is missing, what is risky, and what creates delay, cost, or audit issues, helping the team stay technically accurate and organizationally effective.",
+        body: "The goal is to highlight the issues that affect control, risk and business impact.",
         stat: "3",
         statLabel: "control layers"
     },
@@ -497,9 +497,9 @@ function drawRiskScore(svg, width, height) {
     const narrow = width < 520;
     const centerX = compact ? width * 0.5 : width * 0.52;
     const centerY = narrow ? height * 0.28 : compact ? height * 0.4 : height * 0.43;
-    const riskColors = [palette.blue, palette.mint, palette.clay, palette.rose, palette.lime];
+    const riskColors = [palette.clay, palette.mint, palette.clay, palette.rose, palette.lime];
     const coreR = narrow ? 72 : compact ? 82 : 126;
-    const chipW = narrow ? Math.min(154, width * 0.43) : compact ? 148 : 176;
+    const chipW = narrow ? Math.min(154, width * 0.43) : compact ? 154 : 202;
     const chipH = narrow ? 30 : compact ? 32 : 34;
     const margin = compact ? 12 : 20;
     const ringR = coreR * 1.32;
@@ -593,7 +593,7 @@ function drawRiskScore(svg, width, height) {
         chip.append("text")
             .attr("x", 32)
             .attr("y", chipH / 2 + 4)
-            .attr("font-size", narrow ? 8.4 : compact ? 9.6 : 10.8)
+            .attr("font-size", part.length > 20 ? (narrow ? 7.8 : compact ? 8.8 : 10) : (narrow ? 8.4 : compact ? 9.6 : 10.8))
             .attr("font-weight", 900)
             .attr("fill", palette.ink)
             .text(part);
