@@ -240,12 +240,17 @@ function drawControlNetwork(svg, width, height, large = false) {
 }
 
 function drawScene(sceneKey) {
+    const visual = d3.select("#scene-visual");
+    visual.classed("is-redrawing", true);
     const { svg, width, height } = chartBase("#scene-visual");
     if (sceneKey === "flow") drawDocumentFlow(svg, width, height);
     if (sceneKey === "logic") drawControlLogic(svg, width, height);
     if (sceneKey === "score") drawRiskScore(svg, width, height);
     if (sceneKey === "views") drawDashboardViews(svg, width, height);
     if (sceneKey === "roadmap") drawRoadmap(svg, width, height);
+    window.setTimeout(() => {
+        visual.classed("is-redrawing", false);
+    }, 90);
 }
 
 function drawDocumentFlow(svg, width, height) {
