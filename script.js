@@ -2,14 +2,14 @@ const scenes = {
     flow: {
         kicker: "01 / Document flow",
         title: "Customs team needs all shipment documents in one controlled flow.",
-        body: "Purchase Orders (PO), Commercial Invoices (CI), Intercompany Invoices (IC) and Customs Declarations (CD) each describe one piece of the shipment. The control tower connects them before clearance depends on inconsistent data.",
+        body: "All the customs documents should be connected into one flow before the shipment reaches clearance. Each document has a different role, and mismatches between them are the early warning signal.",
         stat: "5",
         statLabel: "linked checkpoints"
     },
     logic: {
         kicker: "02 / Control logic",
         title: "Track data quality, compliance risk and business impact.",
-        body: "The goal is to highlight the issues that affect control, risk and business impact.",
+        body: "The dashboard should separate what is missing, what is risky, and what creates delay, cost, or audit issues, helping the team stay technically accurate and organizationally effective.",
         stat: "3",
         statLabel: "control layers"
     },
