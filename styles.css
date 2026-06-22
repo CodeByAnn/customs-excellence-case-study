@@ -58,11 +58,11 @@ main {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(480px, 0.92fr);
     align-items: center;
-    gap: clamp(32px, 5vw, 90px);
+    gap: clamp(24px, 3.8vw, 58px);
     width: min(1500px, calc(100vw - 48px));
-    min-height: 100vh;
+    min-height: min(780px, 88vh);
     margin: 0 auto;
-    padding: clamp(26px, 4vw, 58px) 0;
+    padding: clamp(20px, 3vw, 42px) 0 clamp(28px, 4vw, 54px);
 }
 
 .brand-mark {
@@ -83,7 +83,7 @@ main {
 }
 
 .hero-copy {
-    padding-top: clamp(118px, 13vw, 170px);
+    padding-top: clamp(92px, 10vw, 132px);
 }
 
 .eyebrow,
@@ -114,7 +114,7 @@ strong {
 
 h1 {
     max-width: 900px;
-    margin: clamp(28px, 4vw, 58px) 0 0;
+    margin: clamp(22px, 3vw, 42px) 0 0;
     font-size: clamp(4.4rem, 10.8vw, 12.5rem);
     line-height: 0.82;
     letter-spacing: -0.085em;
@@ -122,7 +122,7 @@ h1 {
 
 .hero-question {
     max-width: 880px;
-    margin: clamp(30px, 4vw, 58px) 0 0;
+    margin: clamp(22px, 3vw, 38px) 0 0;
     color: #30302c;
     font-size: clamp(1.45rem, 2.45vw, 2.65rem);
     line-height: 1.08;
@@ -132,7 +132,7 @@ h1 {
 
 .hero-goal {
     max-width: 760px;
-    margin: clamp(20px, 2.6vw, 34px) 0 0;
+    margin: clamp(16px, 2vw, 26px) 0 0;
     color: #454540;
     font-size: clamp(0.98rem, 1.32vw, 1.24rem);
     line-height: 1.48;
@@ -141,7 +141,7 @@ h1 {
 }
 
 .hero-network {
-    min-height: min(600px, 66vh);
+    min-height: min(500px, 56vh);
 }
 
 .thesis-panel,
@@ -149,8 +149,8 @@ h1 {
 .dashboard-strip,
 .final-panel {
     width: min(1280px, calc(100vw - 48px));
-    margin: clamp(70px, 9vw, 140px) auto;
-    padding: clamp(28px, 5vw, 72px);
+    margin: clamp(46px, 6vw, 82px) auto;
+    padding: clamp(24px, 3.6vw, 46px);
     border-top: 2px solid var(--ink);
     border-bottom: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.56);
@@ -179,7 +179,7 @@ h1 {
 }
 
 .handshake-panel {
-    margin-top: clamp(30px, 5vw, 74px);
+    margin-top: clamp(24px, 4vw, 48px);
 }
 
 .handshake-panel h2 {
@@ -215,16 +215,16 @@ h1 {
     position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(330px, 0.48fr);
-    gap: clamp(28px, 4.5vw, 76px);
+    gap: clamp(22px, 3vw, 46px);
     width: min(1460px, calc(100vw - 48px));
-    margin: clamp(70px, 9vw, 150px) auto;
+    margin: clamp(48px, 6vw, 88px) auto;
 }
 
 .sticky-stage {
     position: sticky;
-    top: 24px;
+    top: 18px;
     grid-row: 1 / span 5;
-    height: calc(100vh - 48px);
+    height: calc(100vh - 36px);
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
     align-content: stretch;
@@ -238,7 +238,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    padding: 20px 22px;
+    padding: 16px 18px;
     border-bottom: 1px solid var(--line);
 }
 
@@ -251,8 +251,8 @@ h1 {
 .stage-copy {
     display: grid;
     align-content: space-between;
-    gap: 28px;
-    padding: clamp(24px, 3vw, 42px);
+    gap: 20px;
+    padding: clamp(20px, 2.4vw, 32px);
     border-right: 1px solid var(--line);
     min-height: 0;
     overflow: hidden;
@@ -279,8 +279,8 @@ h1 {
 .scene-stat {
     display: grid;
     align-content: end;
-    min-height: 170px;
-    padding-top: 28px;
+    min-height: 128px;
+    padding-top: 18px;
     border-top: 1px solid var(--line);
 }
 
@@ -303,7 +303,7 @@ h1 {
 
 .scene-visual {
     min-height: 0;
-    padding: clamp(18px, 2vw, 28px);
+    padding: clamp(14px, 1.6vw, 22px);
     display: grid;
     place-items: center;
     overflow: hidden;
@@ -323,10 +323,10 @@ h1 {
 
 .step {
     grid-column: 2;
-    min-height: 84vh;
+    min-height: 72vh;
     display: grid;
     align-content: center;
-    padding: clamp(22px, 2.6vw, 34px);
+    padding: clamp(18px, 2vw, 26px);
     border-top: 1px solid var(--line);
     opacity: 0.34;
     transition: opacity 220ms ease, transform 220ms ease;
@@ -344,7 +344,7 @@ h1 {
 }
 
 .step p {
-    margin: clamp(28px, 3.2vw, 44px) 0 0;
+    margin: clamp(18px, 2.2vw, 28px) 0 0;
     color: #30302c;
     font-size: clamp(1rem, 1.24vw, 1.2rem);
     line-height: 1.5;
@@ -360,7 +360,7 @@ h1 {
 .step ul {
     display: grid;
     gap: 9px;
-    margin: clamp(28px, 3vw, 44px) 0 0;
+    margin: clamp(18px, 2.2vw, 28px) 0 0;
     padding: 0;
     list-style: none;
 }
