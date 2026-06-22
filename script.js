@@ -2,7 +2,7 @@ const scenes = {
     flow: {
         kicker: "01 / Document flow",
         title: "Customs team needs all shipment documents in one controlled flow.",
-        body: "All the customs documents should be connected into one flow before the shipment reaches clearance. Each document has a different role, and mismatches between them are the early warning signal.",
+        body: "Each document shows a different business view. The control point is whether they align before clearance, not after a broker query, reconciliation issue or audit.",
         stat: "5",
         statLabel: "linked checkpoints"
     },
