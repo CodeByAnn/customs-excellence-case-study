@@ -497,11 +497,15 @@ h1 {
 }
 
 .closing-line {
-    max-width: 1040px !important;
+    max-width: 1180px !important;
     padding-top: 24px;
     border-top: 1px solid var(--line);
     color: var(--ink) !important;
     font-weight: 920 !important;
+}
+
+.final-panel p:not(.section-label) {
+    max-width: 1180px;
 }
 
 .final-panel h2 {
